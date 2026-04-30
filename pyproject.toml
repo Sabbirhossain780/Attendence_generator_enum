@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -15,6 +15,9 @@ authors = [
 keywords = ["attendance", "field-survey", "docx", "bigd", "brac"]
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Intended Audience :: Science/Research",
@@ -37,8 +40,15 @@ dev = [
     "ipywidgets>=7.0",
 ]
 
+[project.urls]
+"Homepage" = "https://github.com/Sabbirhossain780/attendance-generator"
+"Bug Tracker" = "https://github.com/Sabbirhossain780/attendance-generator/issues"
+
 [project.scripts]
 attendance-gen = "attendance_generator.cli:main"
 
-[tool.setuptools.packages.find]
-where = ["."]
+[tool.setuptools]
+packages = ["attendance_generator"]
+
+[tool.setuptools.package-data]
+attendance_generator = ["py.typed"]
