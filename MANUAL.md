@@ -1,630 +1,373 @@
-# Attendance Sheet Generator — User Manual
+# Attendance Sheet Generator — Simple User Guide
 
-**BRAC Institute of Governance and Development (BIGD)**
-
----
-
-## Table of Contents
-
-1. [Getting Started](#getting-started)
-2. [Installation](#installation)
-3. [Step-by-Step Guide](#step-by-step-guide)
-4. [Input Data Preparation](#input-data-preparation)
-5. [Output Files Explained](#output-files-explained)
-6. [Calendar Customization](#calendar-customization)
-7. [Frequently Asked Questions](#frequently-asked-questions)
-8. [Troubleshooting](#troubleshooting)
-9. [Tips & Best Practices](#tips--best-practices)
+**Created by BRAC Institute of Governance and Development (BIGD)**
 
 ---
 
-## Getting Started
+## What Does This Tool Do?
 
-This tool generates **professional attendance sheets** and **QC workbooks** for field survey enumerators automatically.
+Think of this tool like a **magic helper that fills out forms for you**.
 
-**What it does:**
-- Takes your survey dataset (Excel, Stata, or CSV)
-- Creates one Word document per enumerator with:
-  - Attendance table (dates, purposes, data markers, signatures)
-  - Repeating headers/footers on every page
-  - Auto-classified days (Weekends, Holidays, Surveys, etc.)
-  - Summary page with day counts
-- Creates an Excel QC workbook with:
-  - Color-coded matrix of all enumerators and dates
-  - Summary statistics
-  - Legend
+Instead of typing attendance sheets by hand for every person, you just:
+1. Give it a list of people and dates
+2. Click a button
+3. It creates all the forms automatically ✓
 
-**Target audience:** Non-technical field research staff. You can use it without opening a terminal.
+**What you get:**
+- Word documents (attendance sheets for each person)
+- Excel file (checklist of who worked when)
+
+No typing required. No magic needed. Just click and wait!
 
 ---
 
-## Installation
+## How to Install (First Time Only)
 
-### Option 1: First-Time Installation
+### The Easy Way (No Command Line)
 
-**On Windows, Mac, or Linux:**
+**If you're not comfortable using Command Prompt:**
 
-1. Open **Command Prompt** (Windows) or **Terminal** (Mac/Linux)
+1. Open the file named `usage_notebook.ipynb`
+2. Click the ▶ button next to the instructions
+3. Fill in the form that appears
+4. Click "Generate"
+5. Done!
 
-2. Copy and paste this command:
-   ```
-   pip install git+https://github.com/Sabbirhossain780/attendance-generator.git
-   ```
+### The Command Prompt Way
 
-3. Press **Enter** and wait for "Successfully installed..."
+**Step 1:** Open Command Prompt
+- Click Start menu
+- Search for "Command Prompt"
+- Click it to open
 
-### Option 2: Using Jupyter Notebook (Recommended for Non-Technical Users)
+**Step 2:** Copy and paste this:
+```
+pip install --upgrade git+https://github.com/Sabbirhossain780/Attendence_generator_enum.git
+```
 
-1. Install Jupyter:
-   ```
-   pip install jupyter
-   ```
+**Step 3:** Press Enter and wait
 
-2. Download or clone the tool
-3. Open the provided `usage_notebook.ipynb` in Jupyter
-4. Click **Run** on Cell 2 (automatic installation)
+When it says "Successfully installed", you're done!
 
-### Verify Installation
+### Check If It Worked
 
-Open Command Prompt/Terminal and type:
+Type this and press Enter:
 ```
 attendance-gen --version
 ```
 
 You should see: `attendance-gen 1.0.0`
 
----
-
-## Step-by-Step Guide
-
-### Using the Jupyter Form (Easiest)
-
-**Step 1: Open Jupyter**
-```
-jupyter notebook notebooks/usage_notebook.ipynb
-```
-
-**Step 2: Read the instructions** in Cell 1
-
-**Step 3: Run Cell 2** (click the ▶ button)
-- Wait for "✓ attendance-generator is up to date."
-
-**Step 4: Run Cell 3**
-- A **form appears** with input fields
-
-**Step 5: Fill the form**
-
-| Field | Example | Required? |
-|-------|---------|-----------|
-| Input file * | `/path/to/data.xlsx` | Yes |
-| Output folder | `./attendance_output` | No (default provided) |
-| Logo image | `/path/to/logo.png` | No |
-| Org line 1 | BRAC Institute of Governance and Development | No (default provided) |
-| Org line 2 | BRAC University | No (default provided) |
-| Pre-survey days | 5 | No |
-| Weekends | friday | No |
-| Holidays | 2025-12-25, 2025-01-01 | No |
-
-**Step 6: Click "✓ Generate Attendance Sheets"**
-
-**Step 7: Wait** for the documents to generate
-- For 10 enumerators: ~5-10 seconds
-- For 50 enumerators: ~30 seconds
-
-**Step 8: Find your files**
-- Navigate to the "Output folder" you specified
-- You'll see Word documents (one per enumerator) + Excel QC workbook
+If you see that, it worked! ✓
 
 ---
 
-### Using Terminal (Command Line)
+## How to Use It
 
-**Step 1: Open Command Prompt/Terminal**
+### Method 1: Using the Form (Easiest)
 
-**Step 2: Navigate to your data folder**
-```
-cd C:\Users\YourName\Documents
-```
+1. Open `usage_notebook.ipynb` in a web browser
+2. Click the green "Run" button on the first cell
+3. A form pops up
+4. Fill in:
+   - **Input file** = Your data file (Excel, CSV, or Stata)
+   - **Output folder** = Where to save the forms
+   - **Logo** = Your picture (optional)
+   - **Organization** = Your company name
+   - **Weekend** = Which day is weekend (usually Friday)
+   - **Holidays** = Special days off (optional)
 
-**Step 3: Run the tool**
+5. Click "Generate Attendance Sheets"
+6. Wait a few seconds
+7. Open the Output folder to see your files
+
+### Method 2: Using Questions (Command Prompt)
+
+**Step 1:** Open Command Prompt and type:
 ```
 attendance-gen
 ```
 
-**Step 4: Answer the questions**
+**Step 2:** Answer the questions:
 
 ```
-==============================================================
-Attendance Sheet Generator - Setup Wizard
-BRAC Institute of Governance and Development
-==============================================================
-
-Answer each question and press Enter.
-Press Enter alone to accept the default shown in [brackets].
-
--- Step 1 of 8 : Input file -----------------------------------
-Path to your survey dataset (.dta / .xlsx / .csv): data.xlsx
+Path to your survey dataset: data.xlsx
 ```
-
-- Type your data file path
-- Press **Enter**
+Just type the name of your file.
 
 ```
--- Step 2 of 8 : Output folder --------------------------------
-Output folder [./attendance_output]: 
+Output folder [./attendance_output]:
 ```
-
-- Press **Enter** to use the default folder, or type a custom path
-- Press **Enter**
+Press Enter to use the default folder.
 
 ```
--- Step 3 of 8 : Logo -----------------------------------------
-Logo image path (leave blank to skip): 
+Logo image path (leave blank to skip):
 ```
+Press Enter to skip, or type your logo file name.
 
-- Press **Enter** to skip, or type the path to your logo file
-- Press **Enter**
+Continue answering the questions (8 total). Most have defaults, so you can just press Enter.
 
-Continue answering the remaining 5 questions...
+**Step 3:** Review the summary and press Enter to create
+
+**Step 4:** Your files are ready!
+
+### Method 3: Advanced (For Experts)
+
+If you know Command Prompt well:
 
 ```
--- Summary ------------------------------------------------
-  Input file   : data.xlsx
-  Output folder: ./attendance_output
-  Logo         : (none)
-  Org line 1   : BRAC Institute of Governance and Development
-  Org line 2   : BRAC University
-  Pre-survey   : 5 days
-  Weekends     : friday
-  Holidays     : (none)
---------------------------------------------------------------
-Press Enter to generate, or Ctrl+C to cancel.
-```
-
-- Review the summary
-- Press **Enter** to generate
-
-**Step 5: Done!**
-Documents are saved to your output folder.
-
----
-
-### Using Command Flags (Advanced)
-
-For scripting or automation:
-
-```bash
-attendance-gen --input data.dta --output ./output --logo logo.png --weekend "friday,saturday" --pre-survey-days 3
-```
-
-See all options:
-```bash
-attendance-gen --help
+attendance-gen --input data.xlsx --output ./output --weekend "friday,saturday"
 ```
 
 ---
 
-## Input Data Preparation
+## Prepare Your Data
 
-### Column Requirements
+Your data file needs these columns (they can have similar names):
 
-Your dataset must have these columns (exact names not required; tool auto-detects):
+| What | Examples | Do I Need It? |
+|------|----------|---------------|
+| **Person ID** | 3753, 4059, EMP001 | YES |
+| **Person Name** | Md Zubaer, Alice Khan | YES |
+| **Start Date** | 2025-12-01 | YES |
+| **End Date** | 2025-12-15 | NO (optional) |
+| **Location** | Dhaka, Sylhet | NO (optional) |
 
-| What | Example Names | Required? | Description |
-|-----|---|---|---|
-| **Enumerator ID** | `enu_code`, `enum_id`, `EnumID` | Yes | Unique ID per enumerator |
-| **Enumerator Name** | `enu_name`, `enum_name`, `EnumName` | Yes | Full name |
-| **Start Date** | `startdate`, `start_date`, `survey_day` | Yes | Survey start date |
-| **End Date** | `enddate`, `end_date`, `finishdate` | No | Survey end date (if different from start) |
-| **Upazila/District** | `upazila`, `upazilla` | No | Working area (appears in "Working Place" column) |
+### Date Formats (All Work)
 
-### Date Formats
+Any of these is fine:
+- `2025-12-01` (best)
+- `01/12/2025`
+- `12/01/2025`
+- `1-Dec-2025`
 
-Supported:
-- `2025-12-01` (ISO format, preferred)
-- `01/12/2025` (DD/MM/YYYY)
-- `12/01/2025` (MM/DD/YYYY)
-- `01-Dec-2025` (text format)
-- Stata date formats (`%td`, `%tC`)
+Just pick one and use it everywhere.
 
-### Example: CSV Format
+### Example Data
 
-```csv
-enu_code,enu_name,startdate,enddate,upazila
+**Simple version:**
+```
+ID,Name,Start
+3753,Md Zubaer,2025-12-01
+4059,Iqbal Hossain,2025-12-01
+```
+
+**Full version:**
+```
+ID,Name,Start,End,Location
 3753,Md Zubaer,2025-12-01,2025-12-11,Dhaka
 4059,Iqbal Hossain,2025-12-01,2025-12-10,Dhaka
-4148,Md Mokhsed Ali,2025-12-01,2025-12-15,Sylhet
 ```
-
-### Example: Excel Format
-
-| enu_code | enu_name | startdate | enddate | upazila |
-|---|---|---|---|---|
-| 3753 | Md Zubaer | 2025-12-01 | 2025-12-11 | Dhaka |
-| 4059 | Iqbal Hossain | 2025-12-01 | 2025-12-10 | Dhaka |
-| 4148 | Md Mokhsed Ali | 2025-12-01 | 2025-12-15 | Sylhet |
-
-### Cleanup Tips
-
-1. **Remove extra spaces** in names
-2. **Use consistent date format** throughout the file
-3. **No missing ID or name** — one enumerator per row
-4. **One record per calendar day** covered by that enumerator
 
 ---
 
-## Output Files Explained
+## What Files Do You Get?
 
-### Attendance Sheet (Word Document)
+### Word Documents (Attendance Sheets)
 
-**Filename:** `{ID}_{NAME}_attendance.docx`
+**File name:** `3753_Md_Zubaer_attendance.docx`
 
-Example: `3753_Md_Zubaer_attendance.docx`
+**What's in it:**
+- Person's name and ID
+- Calendar with dates
+- Space to mark "Survey", "Training", "Holiday", etc.
+- Signature boxes at the bottom
+- Summary page with counts
 
-**Contents:**
+**You can edit these!** Add notes, signatures, or changes anytime.
 
-**Pages 1+: Attendance Table**
+### Excel File (Quality Check)
 
+**File name:** `_QC_Summary.xlsx`
+
+**What's in it:**
+
+**Sheet 1 - Color Grid:**
 ```
-═══════════════════════════════════════════════════════════════
-              BRAC Institute of Governance and Development
-                        BRAC University
-                      Attendance Sheet
-═══════════════════════════════════════════════════════════════
-
-Name: Md Zubaer (3753)    Designation: Enumerator    Mobile: ___
-
-Period: 22 Nov 2025 to 11 Dec 2025
-
-┌─────┬──────────────┬──────────────────────────┬──────┬────────┬────────┐
-│ S/N │ Date         │ Purpose                  │ Data │ Place  │ Remark │
-├─────┼──────────────┼──────────────────────────┼──────┼────────┼────────┤
-│  1  │ 22 Nov 2025  │ Training ☐ Survey ☐ ... │      │        │        │
-│  2  │ 23 Nov 2025  │ Weekend                  │      │        │        │
-│  3  │ 24 Nov 2025  │ Survey                   │ Yes  │ Dhaka  │        │
-│ ... │ ...          │ ...                      │ ...  │ ...    │ ...    │
-│  25 │ (blank)      │ (blank)                  │      │        │        │
-│ ... │ 5 blank rows for manual additions ...                            │
-└─────┴──────────────┴──────────────────────────┴──────┴────────┴────────┘
-
-═══════════════════════════════════════════════════════════════
-                    Authorized by:
-┌─────────────────────┬─────────────────────┬─────────────────────┐
-│                     │                     │                     │
-│ __________________ │ __________________ │ __________________ │
-│    Enumerator       │       FA            │        RA           │
-└─────────────────────┴─────────────────────┴─────────────────────┘
+Name              | 1 Dec | 2 Dec | 3 Dec
+Md Zubaer         | Green | Gray  | Green
+Iqbal Hossain     | Green | Green | Blue
 ```
 
-**Last Page: Summary**
-
-```
-═══════════════════════════════════════════════════════════════
-              Enumerator Summary                  Days Count
-───────────────────────────────────────────────────────────────
-Name:              Md Zubaer                              
-ID No.:            3753                                    
-Period:                                                    
-Survey Days:                                          13   
-Training Days:                                             
-Travel Days:                                               
-Base Work Days:                                            
-Office Work Days:                                          
-Holiday/Off Days:                                          
-Weekend Days:                                               
-Total Working Days:                                        
-Remarks / Notes:                                           
-```
-
-### QC Workbook (Excel)
-
-**Filename:** `_QC_Summary.xlsx`
-
-**Sheet 1: Matrix**
-
-| Enumerator | 22 Nov | 23 Nov | 24 Nov | ... | 11 Dec |
-|---|---|---|---|---|---|
-| Md Zubaer (3753) | Training | Weekend | Survey | ... | (blank) |
-| Iqbal Hossain (4059) | Survey | Survey | Holiday | ... | (blank) |
-
-Colors:
-- 🟢 Green = Survey
-- 🟡 Yellow = Training
-- 🟦 Blue = Base work
-- ⬜ White = Blank/Off
+Colors mean:
+- 🟢 Green = Survey day
+- 🟡 Yellow = Training day
+- 🟦 Blue = Office work
+- ⬜ White = Off day
 - ⬛ Gray = Weekend/Holiday
 
-**Sheet 2: Summary**
+**Sheet 2 - Statistics:**
+```
+Name              | Survey Days | Training Days | Weekends
+Md Zubaer         | 10          | 2             | 2
+Iqbal Hossain     | 9           | 1             | 2
+```
 
-| ID | Name | Period Start | Period End | Data Days | Survey Days | Training Days | Travel Days | Weekend Days | Base Work Days | Blank Days |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 3753 | Md Zubaer | 22 Nov 2025 | 11 Dec 2025 | 13 | 13 | 0 | 0 | 2 | 0 | 11 |
-| 4059 | Iqbal Hossain | 21 Nov 2025 | 10 Dec 2025 | 13 | 13 | 0 | 0 | 2 | 0 | 11 |
-
-**Sheet 3: Legend**
-
-| Colour | Meaning |
-|---|---|
-| 🟢 Green | Survey |
-| 🟡 Yellow | Training Day |
-| 🟦 Blue | Base work |
-| ⬛ Gray | Weekend |
+Quick way to check if everything looks right!
 
 ---
 
-## Calendar Customization
+## Customize Your Settings
 
-### Weekends
+### Change the Weekend Day
 
-By default, Friday is marked as weekend. Customize:
+By default, Friday is the weekend.
 
-**Terminal:**
+If you want Friday AND Saturday:
+
+**In the form:** Type `friday,saturday`
+
+**In Command Prompt:**
 ```
--- Step 6 of 8 : Weekend days --------------------------------
-Weekend days [friday]:
-(e.g. "friday"  or  "friday,saturday"): friday,saturday
-```
-
-**Command line:**
-```bash
-attendance-gen --input data.xlsx --weekend "friday,saturday"
+attendance-gen --weekend "friday,saturday"
 ```
 
-**Supported day names:** Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday (case-insensitive)
+### Add Holidays
 
-**Or by number:** 0=Mon, 1=Tue, 2=Wed, 3=Thu, 4=Fri, 5=Sat, 6=Sun
+Mark special days off:
 
-```bash
---weekend "4,5"  # Friday and Saturday
+**One day:**
+```
+--holidays "2025-12-25"
 ```
 
-### Holidays
-
-Days to mark as "Holiday" in the attendance sheet.
-
-**Terminal:**
+**Multiple days:**
 ```
--- Step 7 of 8 : Public holidays --------------------------------
-Public holiday dates to mark (leave blank if none) []:
-(e.g. "2025-12-25"  or  "2025-12-24:2025-12-26, 2025-01-01"): 2025-12-25, 2025-01-01
-```
-
-**Command line:**
-```bash
 --holidays "2025-12-25, 2025-01-01"
 ```
 
-**Date range:**
-```bash
---holidays "2025-12-20:2025-12-27"  # 20-27 Dec
+**A range:**
+```
+--holidays "2025-12-20:2025-12-27"
 ```
 
-**Multiple ranges:**
-```bash
---holidays "2025-12-20:2025-12-27, 2025-01-01:2025-01-02"
+This marks Dec 20 through Dec 27 as holidays.
+
+### Add Your Logo
+
+Put your organization's picture in the header:
+
+```
+--logo "C:\Users\YourName\Pictures\mylogo.png"
 ```
 
-### Base Work Days
+**The picture must be:** PNG or JPG file
 
-Days to mark as "Base work" in Purpose column (e.g., office work, training at headquarters).
+### Blank Rows at the Start
 
-```bash
---basework "2025-12-10:2025-12-12"
+Add empty rows before the first day (for writing things in by hand):
+
+```
+--pre-survey-days 5
 ```
 
-### Pre-Survey Days
-
-Blank rows before the first survey date (for manual additions).
-
-**Default:** 5 days
-
-**Terminal:**
-```
--- Step 5 of 8 : Pre-survey days -----------
-Days to include BEFORE survey start [5]: 3
-```
-
-**Command line:**
-```bash
---pre-survey-days 3
-```
+This adds 5 blank rows at the top.
 
 ---
 
-## Frequently Asked Questions
+## Questions & Answers
 
-### Q: What if the tool doesn't find my data file?
+### Q: It says "File not found"
 
-**A:** Use the **full path** to your file:
+**A:** Use the full path to your file.
 
-**Windows:**
+**Windows example:**
 ```
-C:\Users\YourName\Documents\survey_data.xlsx
-```
-
-**Mac/Linux:**
-```
-/Users/YourName/Documents/survey_data.xlsx
+C:\Users\YourName\Documents\data.xlsx
 ```
 
-Or navigate to the folder in Command Prompt first:
-```
-cd C:\Users\YourName\Documents
-attendance-gen
-```
-
-Then just type: `survey_data.xlsx`
+Or navigate to the folder first, then use just the filename.
 
 ---
 
-### Q: Can I customize the organization name?
+### Q: Can I change the organization name?
 
 **A:** Yes!
 
-**Terminal:**
 ```
--- Step 4a -- Org line 1 [BRAC Institute of Governance and Development]: My Organization
--- Step 4b -- Org line 2 [BRAC University]: My Division
-```
-
-**Command line:**
-```bash
---org1 "My Organization" --org2 "My Division"
+--org1 "My Organization"
+--org2 "My Division"
 ```
 
 ---
 
-### Q: How do I add a logo?
-
-**A:** Provide the path during setup:
-
-**Terminal:**
-```
--- Step 3 -- Logo image path (leave blank to skip): C:\path\to\logo.png
-```
-
-**Command line:**
-```bash
---logo "C:\path\to\logo.png"
-```
-
-**Logo requirements:**
-- Format: JPEG or PNG
-- File must exist
-- Appears in header, top-left, on every page
-- Size adjusted automatically
-
----
-
-### Q: How long does it take to generate documents?
+### Q: How long does it take?
 
 **A:**
-- 10 enumerators: ~5 seconds
-- 50 enumerators: ~30 seconds
-- 100 enumerators: ~60 seconds
-
-Processing time depends on:
-- Number of enumerators
-- Date range length
-- Computer speed
+- 10 people = 5-10 seconds
+- 50 people = 30 seconds
+- 100 people = 1 minute
 
 ---
 
-### Q: Can I edit the generated documents?
+### Q: Can I edit the documents after?
 
-**A:** **Yes!** The Word documents are fully editable. After generation, you can:
-- Add handwritten signatures
-- Modify text
-- Add notes
-- Change formatting
-
-The Excel QC workbook is also editable.
+**A:** YES! They're normal Word and Excel files. Add notes, signatures, changes — whatever you want.
 
 ---
 
-### Q: What if an enumerator has multiple survey date ranges?
+### Q: What if someone has multiple date ranges?
 
-**A:** The tool handles this automatically. If your data has:
-
-```
-enu_code,enu_name,startdate,enddate
-3753,Md Zubaer,2025-12-01,2025-12-05
-3753,Md Zubaer,2025-12-10,2025-12-15
-```
-
-The tool creates **one document** for Md Zubaer covering both ranges, with blank space in between.
+**A:** The tool handles it automatically. One person, multiple date ranges = one document with blank space in between.
 
 ---
 
-### Q: How do I update the tool?
+### Q: How do I update the tool to get new features?
 
 **A:**
-```bash
-pip install --upgrade git+https://github.com/Sabbirhossain780/attendance-generator.git
 ```
-
-Or in Jupyter: re-run Cell 2 of the notebook.
-
----
-
-## Troubleshooting
-
-### Issue: "File not found" error
-
-**Solution:**
-1. Check the file **exists** at the path you provided
-2. Use the **full path** (not relative path)
-3. Copy the full path from Windows File Explorer:
-   - Right-click the file
-   - Hold Shift
-   - Click "Copy as path"
-   - Paste it into the tool
-
----
-
-### Issue: Column names not detected
-
-**Symptom:**
-```
-Error: Cannot find column for 'Enumerator ID'
-Available: [list of your columns]
-```
-
-**Solution:**
-
-Option 1: Rename your columns to match expected names:
-- `enu_code`, `enum_id`, `EnumID` (for ID)
-- `enu_name`, `enum_name` (for Name)
-- `startdate`, `start_date`, `survey_day` (for Start Date)
-
-Option 2: Provide column overrides (advanced):
-```bash
---col-override "Enumerator ID=your_column_name"
+pip install --upgrade git+https://github.com/Sabbirhossain780/Attendence_generator_enum.git
 ```
 
 ---
 
-### Issue: Dates not being parsed
+## Problems & Fixes
 
-**Symptom:**
-```
-[!] X rows with unparseable start date dropped
-```
+### Problem: File not found
 
-**Solution:**
-1. Check date format — use `YYYY-MM-DD` or `DD/MM/YYYY`
-2. In Excel: Ensure cells are formatted as **Date**, not Text
-3. In Stata: Use `%td` (date) or `%tC` (clock) format
-4. In CSV: Use text date like `2025-12-01` (ISO format preferred)
+**What to do:**
+1. Make sure the file actually exists
+2. Copy the full path from Windows File Explorer
+3. Paste it into the tool
 
 ---
 
-### Issue: Logo not appearing in document
+### Problem: Column names not recognized
 
-**Symptom:** The Word document doesn't show the logo image
+**What to do:**
 
-**Solution:**
-1. Check file **exists** at the path provided
-2. Ensure it's **JPEG or PNG** format
-3. Try with the **full path**:
-   ```bash
-   --logo "C:\Users\YourName\Pictures\logo.png"
-   ```
+Option 1: Rename your columns to:
+- `ID` or `enu_code` or `enum_id`
+- `Name` or `enu_name`
+- `Start` or `startdate`
+
+Option 2: Check your column names match common patterns.
 
 ---
 
-### Issue: Unicode characters causing errors (Windows)
+### Problem: Dates don't work
 
-**Symptom:**
-```
-UnicodeEncodeError: 'charmap' codec can't encode...
-```
+**What to do:**
 
-**Solution:**
+1. Use same date format everywhere
+2. In Excel: Right-click cells → Format as Date
+3. In CSV: Use `2025-12-01` format
 
-Set your terminal to use UTF-8:
+---
 
-**Windows Command Prompt:**
+### Problem: Logo doesn't appear
+
+**What to do:**
+
+1. Make sure the file exists
+2. Make sure it's PNG or JPG
+3. Use the full path
+
+---
+
+### Problem: Weird letters show up (Windows)
+
+Type this in Command Prompt first:
 ```
 chcp 65001
 ```
@@ -633,139 +376,81 @@ Then run the tool again.
 
 ---
 
-### Issue: Different date formats in same file
+## Simple Steps to Success
 
-**Symptom:** Some dates parse, others show as errors
+### Your First Time:
 
-**Solution:**
-1. Use Find & Replace to standardize dates to `YYYY-MM-DD`
-2. In Excel: Select all date cells → Format → Date → ISO 8601
-3. In CSV: Open in a text editor and manually fix date format
+1. Get your data file ready
+   - Make sure it has columns for: ID, Name, Start Date
+   - Make sure all dates are filled in
+   - Check for extra spaces in names
+
+2. Open Command Prompt
+
+3. Type: `attendance-gen`
+
+4. Answer the 8 questions
+   - For most questions, just press Enter for defaults
+   - Only required: your data file path
+
+5. Press Enter when it asks to generate
+
+6. Check the "Output folder" for your files
+
+7. Open the Word and Excel files
+
+**That's it!** You're done.
 
 ---
 
-## Tips & Best Practices
+## Tips to Remember
 
-### 1. Prepare Data First
-
-Before running the tool:
-- ✓ Remove extra spaces from names
-- ✓ Check all dates are valid
-- ✓ Ensure no missing IDs or names
-- ✓ Use consistent date format
-
-**Quick check in Excel:**
-- Sort by ID to spot duplicates
-- Sort by Start Date to catch weird dates
-- Look for blank cells
-
----
-
-### 2. Test with Demo Mode First
-
-For new datasets, test with one enumerator:
-
-```bash
+✓ **Test first:** Use `--demo` to generate for just one person first:
+```
 attendance-gen --input data.xlsx --demo
 ```
 
-This generates documents for **first enumerator only** (alphabetically). Check the output before running on all enumerators.
+✓ **Clean data:** Remove extra spaces, fix dates, check for blanks
+
+✓ **Use short paths:** Put your file on Desktop or Documents for easy paths
+
+✓ **Save your data:** Keep your original Excel/CSV file as backup
+
+✓ **Use Excel QC sheet:** Check the color grid to spot problems quickly
+
+✓ **You can edit outputs:** Add signatures and notes to the Word documents
 
 ---
 
-### 3. Use Relative Paths for Portability
+## What If You Get Stuck?
 
-Instead of:
-```bash
-attendance-gen --input "C:\Users\YourName\Data\survey.xlsx"
-```
-
-Navigate to the folder and use:
-```bash
-cd C:\Users\YourName\Data
-attendance-gen --input survey.xlsx
-```
-
-This makes scripts portable across computers.
-
----
-
-### 4. Create a Batch Script (Windows)
-
-For repeated use, create a file named `generate_attendance.bat`:
-
-```batch
-@echo off
-cd C:\Users\YourName\Data
-attendance-gen --input survey.xlsx --weekend "friday" --holidays "2025-12-25, 2025-01-01"
-pause
-```
-
-Double-click the `.bat` file to run.
-
----
-
-### 5. Use Excel for QC
-
-After generation:
-1. Open `_QC_Summary.xlsx`
-2. Check the **Matrix** sheet for gaps or anomalies
-3. Review **Summary** sheet for accuracy
-4. Use counts to verify against your fieldwork reports
-
----
-
-### 6. Archive Your Outputs
-
-Create a folder structure:
-```
-attendance_outputs/
-  2025_December/
-    survey_2025_12_attendance_sheets/
-      *.docx files
-      _QC_Summary.xlsx
-    raw_data/
-      survey_data.xlsx (original)
-```
-
----
-
-### 7. Keep Your Data File as Backup
-
-Always keep the original dataset (CSV, Excel, or Stata) alongside the generated documents for audit trails.
-
----
-
-## Getting Help
-
-**Issue not listed above?**
-
-1. Check the terminal error message — it usually tells you what's wrong
-2. Verify your data format matches the requirements
-3. Try the `--help` flag to see all options:
-   ```bash
+1. **Read the error message** — it usually tells you what's wrong
+2. **Check your data** — missing columns? Wrong date format?
+3. **Try the help command:**
+   ```
    attendance-gen --help
    ```
+4. **Ask someone** — show them the error message
 
 ---
 
-## Summary: Your First Run
+## Summary: What Just Happened?
 
-```
-1. Open Command Prompt / Terminal
-2. Type: attendance-gen
-3. Answer 8 questions
-4. Press Enter to confirm
-5. Wait 5-30 seconds
-6. Check the "Output folder" for .docx and .xlsx files
-7. Open documents in Word/Excel
-8. Done!
-```
+You installed a tool that:
+- Takes a list of people and dates
+- Creates professional attendance forms
+- Saves them as Word and Excel files
+- Saves you hours of typing
 
-**That's it.** No technical knowledge required.
+No magic, just automation. ✓
+
+**You're ready to use it!**
 
 ---
 
-**Version:** 1.0.0  
-**Built by:** BIGD, BRAC University  
-**License:** MIT (free to use and modify)
+**Version:** 1.0.0
+
+**Made by:** BIGD, BRAC University
+
+**License:** MIT (free to use)
+
