@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "attendance-generator"
+version = "1.0.0"
+description = "Automated attendance & travelling bill .docx generator for field surveys"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "BIGD Research Team", email = "research@bigd.bracu.ac.bd" }
+]
+keywords = ["attendance", "field-survey", "docx", "bigd", "brac"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+]
+dependencies = [
+    "python-docx>=1.1.0",
+    "openpyxl>=3.1.0",
+    "pandas>=2.0.0",
+    "lxml>=5.0.0",
+]
+
+[project.optional-dependencies]
+notebook = [
+    "ipywidgets>=7.0",
+    "jupyter>=1.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ipywidgets>=7.0",
+]
+
+[project.scripts]
+attendance-gen = "attendance_generator.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]

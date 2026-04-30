@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version
+        id: ver
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Extract changelog section
+        id: notes
+        run: |
+          python3 - <<'EOF'
+          import re, os
+          ver = os.environ["VERSION"]
+          text = open("CHANGELOG.md").read()
+          m = re.search(rf"## {re.escape(ver)}.*?(?=\n## |\Z)", text, re.DOTALL)
+          body = m.group(0).strip() if m else f"Release {ver}"
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"BODY<<ENDOFBODY\n{body}\nENDOFBODY\n")
+          EOF
+        env:
+          VERSION: ${{ steps.ver.outputs.VERSION }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "v${{ steps.ver.outputs.VERSION }}"
+          body: ${{ steps.notes.outputs.BODY }}
